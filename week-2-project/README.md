@@ -56,20 +56,3 @@ Form are ubiquitous in building user interface.
 We need to learn how to control the inner state in them and use that to validate user input, making our application interactive.
 
 Take a look at the test in [forms.js](./src/__tests__/forms.test.js) to get started with the exercise.
-
-### Child-Parent and Parent-Child Communication
-
-By communication we mean the passing of state and props between Components.
-Typically 1 component will take up the role of Parent and the component being rendered by the parent will be called the Child. 
-
-https://www.pluralsight.com/guides/react-communicating-between-components
-
-Take a look at the test in [communication.js](./src/__tests__/communication.test.js) to get started with the exercise.
-
-### Api
-
-An app does not live in vacuum. It communicates or gets it state from the outside world.
-We will see how to render data fetched from an api.
-How our interface can interact with that api.
-
-Take a look at the test in [api.js](./src/__tests__/api.test.js) to get started with the exercise.
