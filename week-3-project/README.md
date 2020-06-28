@@ -32,15 +32,6 @@ They will allow us to keep state in Components. Trigger side effects when render
 
 https://reactjs.org/docs/hooks-overview.html
 
-### Child-Parent and Parent-Child Communication
-
-By communication we mean the passing of state and props between Components.
-Typically 1 component will take up the role of Parent and the component being rendered by the parent will be called the Child. 
-
-https://www.pluralsight.com/guides/react-communicating-between-components
-
-Take a look at the test in [communication.js](./src/__tests__/communication.test.js) to get started with the exercise.
-
 ### Api
 
 An app does not live in vacuum. It communicates or gets it state from the outside world.

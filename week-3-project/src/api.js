@@ -6,68 +6,56 @@ import React, {useEffect, useState} from "react";
 // TODO: after fetching the pokemons from the api set it to our state
 // TODO: render the names of the pokemons
 
-const Pokedex = () => {
-    const [pokemons, setPokemons] = useState([]);
+class Pokedex extends React.Component {
 
-    // This use effect might be confusing
-    // But is is an example of another type of hook
-    // For now it is unimportant to know how it works exactly
-    // Just know that it executes the function once on first render
-    useEffect(() => {
+    state = {
+        pokemons: []
+    }
+
+    componentDidMount() {
         const fetchPokemons = () => {
             return fetch('https://pokeapi.co/api/v2/pokedex/2/')
                 .then(response => response.json())
                 .then(json => json.pokemon_entries);
         };
 
-        /* Use the result of the fetchPokemons function */
-        /* set the result using setPokemons, be sure to support the render below */
-    }, []);
+        fetchPokemons()
+            .then((pokemons) => {
+                // Set the state here
+            });
+    }
 
-    return (
-        <div className={'pokedex'}>
-            <h2>Pokedex</h2>
-            {
-                pokemons.map(pokemon => <Pokemon key={pokemon.entry_number} {...pokemon} />)
-            }
-        </div>
-    )
-};
+    render() {
+        return (
+            <div className={'pokedex'}>
+                <h2>Pokedex</h2>
+                {
+                    this.state.pokemons.map(pokemon => <Pokemon key={pokemon.entry_number} {...pokemon} />)
+                }
+            </div>
+        )
+    }
 
-const Pokemon = ({ /* add the property we want to use in order to display the name */ }) => {
-    return (
-        <article>
-            {/* Render the property here */}
-        </article>
-    )
-};
+}
 
-// Exercise Pokedex:
-// A pokedex is a machine that displays all the known pokemon
-// Render all the known pokemons for our user
-// TODO: after fetching the pokemons from the api set it to our state
-// TODO: render the names of the pokemons
+class Pokemon extends React.Component {
+    render() {
+        return (
+            <article>
+                {/* Render the property here */}
+            </article>
+        )
+    }
+}
 
-const InteractivePokedex = () => {
-    const [pokemons, setPokemons] = useState([]);
-    const [selectedPokemon, setSelectedPokemon] = useState(false);
+class InteractivePokedex extends React.Component {
 
-    // This use effect might be confusing
-    // But is is an example of another type of hook
-    // For now it is unimportant to know how it works exactly
-    // Just know that it executes the function once on first render
-    useEffect(() => {
-        const fetchPokemons = () => {
-            return fetch('https://pokeapi.co/api/v2/pokedex/2/')
-                .then(response => response.json())
-                .then(json => json.pokemon_entries);
-        };
+    state = {
+        pokemons: [],
+        selectedPokemon: false
+    }
 
-        /* Use the result of the fetchPokemons function */
-        /* set the result using setPokemons, be sure to support the render below */
-    }, []);
-
-    const onSelectHandler = (pokemon) => {
+    onSelectHandler = (pokemon) => {
         const fetchPokemon = () => {
             return fetch(pokemon.url)
                 .then(response => response.json());
@@ -77,43 +65,61 @@ const InteractivePokedex = () => {
         /* set the result using selectedPokemon, be sure to support the render below */
     };
 
-    return (
-        <div className={'pokedex'}>
-            <h2>Interactive Pokedex</h2>
-            {
-                selectedPokemon === false
-                ? (
-                    pokemons.map(pokemon => <InterActivePokemon key={pokemon.entry_number} {...pokemon} /* pass the onSelectHandler here a property */ />)
-                )
-                : (
-                    <DetailedPokemon {...selectedPokemon} />
-                )
-            }
-        </div>
-    )
+    componentDidMount() {
+        const fetchPokemons = () => {
+            return fetch('https://pokeapi.co/api/v2/pokedex/2/')
+                .then(response => response.json())
+                .then(json => json.pokemon_entries);
+        };
 
-};
+        fetchPokemons()
+            .then((pokemons) => {
+                // Set the state here
+            });
+    }
 
-const DetailedPokemon = ({ flavor_text_entries }) => {
-    return (
-        <article>
-            {flavor_text_entries.map((entry, index) => <p key={index}>{entry.flavor_text}</p>)}
-        </article>
-    );
-};
+    render() {
+        return (
+            <div className={'pokedex'}>
+                <h2>Interactive Pokedex</h2>
+                {
+                    this.state.selectedPokemon === false
+                        ? (
+                            this.state.pokemons.map(pokemon => <InterActivePokemon key={pokemon.entry_number} {...pokemon} /* pass the onSelectHandler here a property */ />)
+                        )
+                        : (
+                            <DetailedPokemon {...this.state.selectedPokemon} />
+                        )
+                }
+            </div>
+        )
+    }
+}
 
-const InterActivePokemon = ({ pokemon_species, onSelectHandler }) => {
-    const onClick = () => {
+class DetailedPokemon extends React.Component {
+    render() {
+        return (
+            <article>
+                {this.props.flavor_text_entries.map((entry, index) => <p key={index}>{entry.flavor_text}</p>)}
+            </article>
+        )
+    }
+}
+
+class InterActivePokemon extends React.Component {
+
+    onClick = () => {
         /* trigger the onSelectedHandler function with the pokemon_species */
     };
 
-    return (
-        <article>
-            {/* Render the property here */}
-            <button onClick={onClick}>Learn more</button>
-        </article>
-    )
-};
-
+    render() {
+        return (
+            <article>
+                {/* Render the property here */}
+                <button onClick={this.onClick}>Learn more</button>
+            </article>
+        )
+    }
+}
 
 export { Pokedex, InteractivePokedex };

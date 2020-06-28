@@ -40,9 +40,9 @@
 						<ol>
 							<li>Review</li>
 							<li>Hooks</li>
-							<li>Component Communication</li>
+							<li>Forms</li>
 							<li>API's</li>
-							<li>Homework Prep</li>
+							<li>State Management</li>
 						</ol>
 					</section>
 				</section>
@@ -56,33 +56,63 @@
 						Update your fork
 					</p>
 					<p>
-						Open a terminal in the week-2-project directory
+						Open a terminal in the week-3-project directory
 					</p>
-					<a href="https://github.com/HackYourFutureBelgium/React/tree/master/week-2-project">Follow instructions</a>
+					<a href="https://github.com/HackYourFutureBelgium/React/tree/master/week-3-project">Follow instructions</a>
+				</section>
+				<section>
+					<section>
+						<h2>Forms</h2>
+						<p>
+							<a href="https://reactjs.org/docs/forms.html">https://reactjs.org/docs/forms.html</a>
+						</p>
+					</section>
+					<section>
+						<iframe
+								src="https://codesandbox.io/embed/competent-yalow-iixkl?fontsize=14&hidenavigation=1&theme=dark"
+								style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+								title="competent-yalow-iixkl"
+								allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+								sandbox="allow-autoplay allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+						></iframe>
+					</section>
 				</section>
 				<section>
 					<section>
 						<h2>Hooks</h2>
 					</section>
-				</section>
-                <section>
-                    <section>
-                        <h2>Component Communication</h2>
-                    </section>
 					<section>
-						<img src="https://i.stack.imgur.com/9hvlb.png">
+						<h3>useState</h3>
+						<section>
+						<pre><code class="hljs text js">
+const [value, setValue] = useState(initialValue);
+						</code></pre>
+						</section>
 					</section>
 					<section>
-						<h3>Parent to Child</h3>
-						<h4>PROPS</h4>
-					</section>
-					<section>
-						<h3>Child to Parent</h3>
-						<h4>Callback function</h4>
-					</section>
-					<section>
-						<h3>Exercise</h3>
-						<iframe src="https://giphy.com/embed/fPWJGmS8Qizy8" width="480" height="368" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/exercise-poodle-fPWJGmS8Qizy8">via GIPHY</a></p>
+						<h3>useEffect</h3>
+						<section>
+						<pre><code class="hljs text js">
+function Example() {
+  const [count, setCount] = useState(0);
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+		</button>
+    </div>
+  );
+}
+						</code></pre>
+						</section>
 					</section>
 				</section>
                 <section>
@@ -91,7 +121,7 @@
                     </section>
 					<section>
 						<h3>Pokedex API</h3>
-						<a href="https://pokeapi.co/docs/v2.html">https://pokeapi.co/docs/v2.html</a>
+						<a href="https://pokeapi.co/docs/v2">https://pokeapi.co/docs/v2</a>
 					</section>
 					<section>
 						<h3>Exercise</h3>
@@ -99,10 +129,20 @@
                 </section>
                 <section>
                     <section>
-                        <h2>Homework Prep</h2>
+                        <h2>State Management</h2>
                     </section>
 					<section>
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/MLNLT_-mBA0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<h3>useReducer()</h3>
+					</section>
+					<section>
+						<h3>Redux</h3>
+						<iframe
+								src="https://codesandbox.io/embed/003-react-redux-demo-app-lb91d?fontsize=14&hidenavigation=1&theme=dark"
+								style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+								title="003 React-Redux Demo App"
+								allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+								sandbox="allow-autoplay allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+						></iframe>
 					</section>
                 </section>
 			</div>

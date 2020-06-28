@@ -11,7 +11,7 @@ const Ex1 = function () {
     return (
         <div>
             <p>{text}</p>
-            <button onClick={() => { setText() /* Fix something here */ }}>
+            <button onClick={() => { setText('Hello World') }}>
                 Translation please
             </button>
         </div>
@@ -30,7 +30,12 @@ const Ex2 = function () {
         <div>
             <p>{text[idx]}</p>
             <button onClick={() => {
-                /* Write some logic here */
+                if (idx === 0) {
+                    setIdx(1);
+                }
+                else {
+                    setIdx(0);
+                }
             }}>
                 Translation please
             </button>
@@ -51,7 +56,11 @@ const Ex3 = function () {
         <div>
             <p>{text[idx]}</p>
             <button onClick={() => {
-                /* Write some logic here */
+                let newIdx = idx + 1;
+                if (newIdx > text.length - 1) {
+                    newIdx = 0;
+                }
+                setIdx(newIdx);
             }}>
                 Translation please
             </button>
@@ -70,13 +79,19 @@ const Ex4 = function () {
     const lang = ['english', 'japanese'];
     const text = ['Hello 世界', 'Hello World'];
     const [idx, setIdx] = useState(0);
+
     return (
         <div>
             <p>{text[idx]}</p>
             <button onClick={() => {
-                /* Write some logic here */
+                if (idx === 0) {
+                    setIdx(1);
+                }
+                else {
+                    setIdx(0);
+                }
             }}>
-                Translation to {/* Insert a variable here */} please
+                Translation to {lang[idx]} please
             </button>
         </div>
     )

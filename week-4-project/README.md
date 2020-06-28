@@ -6,6 +6,15 @@ The exercises are guided by [tests](./src/__tests__).
 Each exercise has an associated test that will explain what is expected.
 Some tests you require you to fix an assertion others require you to fix something in the associated `.js` file. 
 
+### Child-Parent and Parent-Child Communication
+
+By communication we mean the passing of state and props between Components.
+Typically 1 component will take up the role of Parent and the component being rendered by the parent will be called the Child. 
+
+https://www.pluralsight.com/guides/react-communicating-between-components
+
+Take a look at the test in [communication.js](./src/__tests__/communication.test.js) to get started with the exercise.
+
 ### Composition
 
 https://reactjs.org/docs/composition-vs-inheritance.html#containment

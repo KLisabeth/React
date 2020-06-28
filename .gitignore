@@ -4,6 +4,7 @@
 /week-1-project/node_modules
 /week-2-project/node_modules
 /week-3-project/node_modules
+node_modules/
 
 /week-1-project/.pnp
 /week-2-project/.pnp

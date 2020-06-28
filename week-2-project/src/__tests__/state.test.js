@@ -55,7 +55,7 @@ test('Exercise 3: adding some more complicated business logic when updating the 
     fireEvent.click(button);
 
     // find updated text
-    getByText(/Hallo Wereld/i);
+    getByText(/Dag Wereld/i);
 
     // click on button again again
     fireEvent.click(button);
