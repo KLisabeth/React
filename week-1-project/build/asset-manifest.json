@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "%3Cusername%3E.github.io/React/week-1-project/build/static/js/main.b0f4c5dd.chunk.js",
+    "main.js.map": "%3Cusername%3E.github.io/React/week-1-project/build/static/js/main.b0f4c5dd.chunk.js.map",
+    "runtime-main.js": "%3Cusername%3E.github.io/React/week-1-project/build/static/js/runtime-main.e77b2ca0.js",
+    "runtime-main.js.map": "%3Cusername%3E.github.io/React/week-1-project/build/static/js/runtime-main.e77b2ca0.js.map",
+    "static/js/2.5670d731.chunk.js": "%3Cusername%3E.github.io/React/week-1-project/build/static/js/2.5670d731.chunk.js",
+    "static/js/2.5670d731.chunk.js.map": "%3Cusername%3E.github.io/React/week-1-project/build/static/js/2.5670d731.chunk.js.map",
+    "index.html": "%3Cusername%3E.github.io/React/week-1-project/build/index.html",
+    "precache-manifest.504cafa4ace1df93ac31a31dea631255.js": "%3Cusername%3E.github.io/React/week-1-project/build/precache-manifest.504cafa4ace1df93ac31a31dea631255.js",
+    "service-worker.js": "%3Cusername%3E.github.io/React/week-1-project/build/service-worker.js",
+    "static/js/2.5670d731.chunk.js.LICENSE": "%3Cusername%3E.github.io/React/week-1-project/build/static/js/2.5670d731.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e77b2ca0.js",
+    "static/js/2.5670d731.chunk.js",
+    "static/js/main.b0f4c5dd.chunk.js"
+  ]
+}
