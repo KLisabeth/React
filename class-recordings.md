@@ -11,3 +11,8 @@
   - [Part 1](https://vimeo.com/431190348) - by [Olivier](https://github.com/xurei)
   - [Break-out session 1](https://vimeo.com/431187975/c2bf7158dc) - by [Anthony](https://github.com/Toinne)
   - [Part 2](https://vimeo.com/431206655) - by Anthony
+  
+ * Week 3
+   - [Part 1](https://vimeo.com/433319666) - by [Anthony](https://github.com/Toinne)
+   - [Part 2](https://vimeo.com/433339011) - by [Anthony](https://github.com/Toinne)
+  
