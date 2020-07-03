@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import './forms.css'
 
@@ -32,7 +32,7 @@ class ContactForm extends React.Component {
                             <textarea
                                 id="comment"
                                 name="comment"
-                                onChange={(event) => { /* use event.target.value to set the comment */ }}
+                                onChange={(event) => { this.setState({comment: event.target.value})/* use event.target.value to set the comment */ }}
                             />
                         </div>
                         <div className="field">
@@ -42,7 +42,7 @@ class ContactForm extends React.Component {
                                 type="text"
                                 name="name"
                                 aria-label="contact-name"
-                                onChange={(event) => { /* use event.target.value to set the name */ }}
+                                onChange={(event) => { this.setState({name: event.target.value})/* use event.target.value to set the name */ }}
                             />
                         </div>
                         <button type="submit">Send it!</button>
@@ -70,7 +70,7 @@ class MathForm extends React.Component {
 
     render() {
         // numberA and numberB are strings how can we force them to be numbers ?
-        const sum = this.state.numberA + this.state.numberB;
+        const sum = Number(this.state.numberA) + Number(this.state.numberB);
 
         return (
             <section className="contact">
@@ -81,7 +81,7 @@ class MathForm extends React.Component {
                             type="number"
                             name="numberA"
                             aria-label="math-number-a"
-                            /* add an attribute with value here that causes numberA to update when the input changes */
+                            onChange={(event) => { this.setState({numberA: event.target.value})}}/* add an attribute with value here that causes numberA to update when the input changes */
                         />
                         &nbsp; + &nbsp;
                         <input
@@ -89,7 +89,7 @@ class MathForm extends React.Component {
                             type="number"
                             name="numberA"
                             aria-label="math-number-b"
-                            /* add an attribute with value here that causes numberA to update when the input changes */
+                            onChange={(event) => { this.setState({numberB: event.target.value})}}/* add an attribute with value here that causes numberA to update when the input changes */
                         />
                     </div>
                 </form>
@@ -119,18 +119,30 @@ class FruitForm extends React.Component {
         event.preventDefault(); // We disable the default behaviour of a form
 
         /* Only update the state of fruit if we have no errors */
-        this.setState({
-            fruits: [...this.state.fruits, this.state.fruit]
+    const error = this.ifError(this.state.fruit);
+
+     if (!error)  
+     this.setState({
+           fruits: [...this.state.fruits, this.state.fruit]  
         })
     };
+    ifError = (fruit) => {
+        const error = !['banana', 'apple'].includes(fruit);
+        return error;
+}
 
     setFruit = (fruit) => {
+        const error = this.ifError(fruit);
+
+        if (!error) {
+            this.setState({ fruit: fruit });
+        }
 
     }
-
+    
+      
     render() {
-        const error = false; /* Add an expression here that validates if fruit is a banana or apple */
-
+        const error = !['banana','apple'].includes(this.fruit); /* Add an expression here that validates if fruit is a banana or apple */
         return (
             <section className="contact">
                 <form onSubmit={this.onSubmit}>
