@@ -108,7 +108,9 @@ const Ex5 = function () {
     return (
         <div>
             <p>{count}</p>
-            <button /* Add something here */>
+            <button onClick={() =>{
+                setCount(count + 1)
+            }}/* Add something here */>
                 Click me!
             </button>
         </div>
@@ -123,11 +125,12 @@ const Ex5 = function () {
 // No? too bad...
 
 const Ex6 = function () {
-    const [fib, setFib] = useState( /* Set the initial value of the state here */);
+    const [fib, setFib] = useState( [0, 1]/* Set the initial value of the state here */);
     return (
         <div>
-            <p>{/* The value you should put here is: `fib[0]`, but this will only work after you set the initial state */}</p>
-            <button onClick={() => { /* Write a function to update the state */ }}>
+            <p>{ fib[0] /* The value you should put here is: `fib[0]`, but this will only work after you set the initial state */}</p>
+            <button onClick={() => { 
+                setFib([fib[1], fib[0]+fib[1]]) /* Write a function to update the state */ }}>
                 Click me!
             </button>
         </div>
@@ -140,11 +143,13 @@ const Ex6 = function () {
 // initial value should be 0
 
 const Ex7 = function () {
-    /* Init the state here */
+    const [count, setCount] = useState(0);/* Init the state here */
     return (
         <div>
-            <p>{/* Set a value here */}</p>
-            <button /* Add something here */>
+            <p>{ count/* Set a value here */}</p>
+            <button onClick={()=> {
+                setCount(count + 1)
+            }}/* Add something here */>
                 click me
             </button>
         </div>
@@ -161,17 +166,23 @@ const Ex7 = function () {
 // Set the p tag text to: "I like ..." where ... is the text value of the button
 
 const Ex8 = function () {
-    /* init state and function to update it here */
+    const [text, setText] = useState([]); /* init state and function to update it here */
     return (
         <div>
-            <p>I like {/* Add something here */}</p>
-            <button /* Add something here */>
+            <p>I like {text/* Add something here */}</p>
+            <button onClick={()=>{
+                setText('fruit')
+            }}/* Add something here */>
                 fruit
             </button>
-            <button /* Add something here */>
+            <button onClick={()=>{
+                setText('meat')
+            }}/* Add something here */>
                 meat
             </button>
-            <button /* Add something here */>
+            <button onClick={()=>{
+                setText('vegetables')
+            }}/* Add something here */>
                 vegetables
             </button>
         </div>
@@ -190,14 +201,18 @@ const Ex8 = function () {
 // Append it to the initial 'Last click'
 
 const Ex9 = function () {
-    /* init state and function to update it here */
+    const [text, setText] = useState();/* init state and function to update it here */
     return (
         <div>
-            <p>Last click: {/* Add something here */}</p>
-            <button /* Add something here */>
+            <p>Last click: { text/* Add something here */}</p>
+            <button onClick={()=>{
+                setText('UPPER')
+            }}/* Add something here */>
                 UPPER
             </button>
-            <button /* Add something here */>
+            <button onClick={()=>{
+                setText('LOWER')
+            }}/* Add something here */>
                 LOWER
             </button>
         </div>
@@ -219,10 +234,13 @@ const Ex10 = function () {
         <div>
             <ul>
                 {
-                    /* render the items as an li here */
+                    items.map((item, index) => <li key={index}> {item}</li>) /* render the items as an li here */
                 }
             </ul>
-            <button onClick={() => { /* Set the items here */  }}>
+            <button onClick={() => { 
+                const newItem = items.slice();
+                newItem.push("containerd");
+                setItems(newItem)/* Set the items here */  }}>
                 Add element
             </button>
         </div>
@@ -248,16 +266,19 @@ const Ex10 = function () {
 const Ex11 = function () {
     const default_list = ['ipsizzle', 'nullizzle', 'sapizzle', 'velizzle', 'crackalackin', 'maurizzle', 'rhoncizzle'];
     const [items, setItems] = useState([]);
-    const [idx, setIdx] = useState(1);
+    const [idx, setIdx] = useState(0);
     return (
         <div>
             <ul>
                 {
-                    /* render the items as an li here */
+                    items.map((item, index) => <li key={index}> {item}</li>)   /* render the items as an li here */
                 }
             </ul>
             <button onClick={() => {
-                /* update the state here */
+                let newItem = items.slice();
+                newItem.push(default_list[idx])
+                setItems(newItem)
+                setIdx(idx + 1); /* update the state here */
             }}>
                 Add element
             </button>
@@ -275,16 +296,19 @@ const Ex11 = function () {
 
 const Ex12 = function ({base_list}) {
     const [items, setItems] = useState([]);
-    const [idx, setIdx] = useState(1);
+    const [idx, setIdx] = useState(0);
     return (
         <div>
             <ul>
                 {
-                    /* render the items as an li here */
+                    items.map((item, index) => <li key={index}> {item}</li>)   /* render the items as an li here */
                 }
             </ul>
             <button onClick={() => {
-                /* update the state here */
+                let newItem = items.slice();
+                newItem.push(base_list[idx])
+                setItems(newItem)
+                setIdx(idx + 1);/* update the state here */
             }}>
                 Add element
             </button>
@@ -304,21 +328,27 @@ const Ex12 = function ({base_list}) {
 const Ex13 = function () {
     const default_list = ['ipsizzle', 'nullizzle', 'sapizzle', 'velizzle', 'crackalackin', 'maurizzle', 'rhoncizzle'];
     const [items, setItems] = useState([]);
-    const [idx, setIdx] = useState(1);
+    const [idx, setIdx] = useState(0);
     return (
         <div>
             <ul>
                 {
-                    /* render the items as an li here */
+                    items.map((item, index) => <li key={index}>{item}</li>)   /* render the items as an li here */
                 }
             </ul>
             <button onClick={() => {
-                /* update the state here */
+                let newItem = items.slice();
+                newItem.push(default_list[idx])
+                setItems(newItem)
+                setIdx(idx + 1)/* update the state here */
             }}>
                 Add element
             </button>
             <button onClick={() => {
-                /* update the state here */
+                let newItem = items.slice(idx, 1);
+                newItem.pop()
+                setItems(newItem)
+                setIdx(idx - 1)/* update the state here */
             }}>
                 Remove element
             </button>
@@ -334,21 +364,27 @@ const Ex13 = function () {
 
 const Ex14 = function ({base_list}) {
     const [items, setItems] = useState([]);
-    const [idx, setIdx] = useState(1);
+    const [idx, setIdx] = useState(0);
     return (
         <div>
             <ul>
                 {
-                    /* render the items as an li here */
+                    items.map((item, index) => <li key={index}>{item}</li>) /* render the items as an li here */
                 }
             </ul>
             <button onClick={() => {
-                /* update the state here */
+                let newItem = items.slice();
+                newItem.push(base_list[idx])
+                setItems(newItem)
+                setIdx(idx + 1)/* update the state here */
             }}>
                 Add element
             </button>
             <button onClick={() => {
-                /* update the state here */
+               let newItem = items.splice(idx, 1);
+                newItem.pop()
+                setItems(newItem)
+                setIdx(idx - 1) /* update the state here */
             }}>
                 Remove element
             </button>
