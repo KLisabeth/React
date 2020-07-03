@@ -180,6 +180,6 @@ test('BONUS, I have solved the warning about the unique key', async () => {
     // When you run the test you might have noticed this warning "Warning: Each child in a list should have a unique "key" prop."
     // Can you solve the problem ?
 
-    const iSolvedTheProblem = false;
+    const iSolvedTheProblem = true;
     expect(iSolvedTheProblem).toBeTruthy();
 });
