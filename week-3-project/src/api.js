@@ -21,7 +21,8 @@ class Pokedex extends React.Component {
 
         fetchPokemons()
             .then((pokemons) => {
-                // Set the state here
+                this.setState(pokemons)
+                  // Set the state here
             });
     }
 
@@ -42,7 +43,7 @@ class Pokemon extends React.Component {
     render() {
         return (
             <article>
-                {/* Render the property here */}
+                {this.props.pokemon_species.name/* Render the property here */}
             </article>
         )
     }
@@ -52,7 +53,8 @@ class InteractivePokedex extends React.Component {
 
     state = {
         pokemons: [],
-        selectedPokemon: false
+        selectedPokemon: false,
+        flavor: [] 
     }
 
     onSelectHandler = (pokemon) => {
@@ -60,7 +62,10 @@ class InteractivePokedex extends React.Component {
             return fetch(pokemon.url)
                 .then(response => response.json());
         };
-
+      fetchPokemon()
+      .then((pokemon) => this.setState({
+          selectedPokemon: true,
+          flavor: pokemon.flavor_text_entries}))
         /* Use the result of the fetchPokemon function */
         /* set the result using selectedPokemon, be sure to support the render below */
     };
@@ -74,7 +79,7 @@ class InteractivePokedex extends React.Component {
 
         fetchPokemons()
             .then((pokemons) => {
-                // Set the state here
+                this.setState(pokemons)// Set the state here
             });
     }
 
@@ -85,10 +90,13 @@ class InteractivePokedex extends React.Component {
                 {
                     this.state.selectedPokemon === false
                         ? (
-                            this.state.pokemons.map(pokemon => <InterActivePokemon key={pokemon.entry_number} {...pokemon} /* pass the onSelectHandler here a property */ />)
+                            this.state.pokemons.map(pokemon => <InterActivePokemon key={pokemon.entry_number} {...{
+                                pokemon_species: pokemon.pokemon_species,
+                                onSelectHandler: this.onSelectHandler}} 
+                            /* pass the onSelectHandler here a property */ />)
                         )
                         : (
-                            <DetailedPokemon {...this.state.selectedPokemon} />
+                            <DetailedPokemon {...{ flavor_text_entries: this.state.flavor }} />
                         )
                 }
             </div>
@@ -109,13 +117,13 @@ class DetailedPokemon extends React.Component {
 class InterActivePokemon extends React.Component {
 
     onClick = () => {
-        /* trigger the onSelectedHandler function with the pokemon_species */
+        this.props.onSelectHandler(this.props.pokemon_species);  /* trigger the onSelectedHandler function with the pokemon_species */
     };
 
     render() {
         return (
             <article>
-                {/* Render the property here */}
+                {this.props.pokemon_species.name/* Render the property here */}
                 <button onClick={this.onClick}>Learn more</button>
             </article>
         )

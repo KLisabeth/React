@@ -15,12 +15,14 @@ const Pokedex = () => {
     // Just know that it executes the function once on first render
     useEffect(() => {
         const fetchPokemons = () => {
-            return fetch('https://pokeapi.co/api/v2/pokedex/2/')
+            return fetch('')
                 .then(response => response.json())
                 .then(json => json.pokemon_entries);
         };
 
-        /* Use the result of the fetchPokemons function */
+        fetchPokemons() 
+        .then((pokemons) => setPokemons(pokemons))
+         /* Use the result of the fetchPokemons function */
         /* set the result using setPokemons, be sure to support the render below */
     }, []);
 
@@ -35,10 +37,10 @@ const Pokedex = () => {
     )
 };
 
-const Pokemon = ({ /* add the property we want to use in order to display the name */ }) => {
+const Pokemon = (props/* add the property we want to use in order to display the name */ ) => {
     return (
         <article>
-            {/* Render the property here */}
+            {props.pokemon_species.name/* Render the property here */}
         </article>
     )
 };
@@ -52,6 +54,7 @@ const Pokemon = ({ /* add the property we want to use in order to display the na
 const InteractivePokedex = () => {
     const [pokemons, setPokemons] = useState([]);
     const [selectedPokemon, setSelectedPokemon] = useState(false);
+    const [flavor, setFlavor] = useState([]);
 
     // This use effect might be confusing
     // But is is an example of another type of hook
@@ -63,7 +66,8 @@ const InteractivePokedex = () => {
                 .then(response => response.json())
                 .then(json => json.pokemon_entries);
         };
-
+        fetchPokemons() 
+            .then((pokemons) => setPokemons(pokemons))
         /* Use the result of the fetchPokemons function */
         /* set the result using setPokemons, be sure to support the render below */
     }, []);
@@ -74,6 +78,11 @@ const InteractivePokedex = () => {
                 .then(response => response.json());
         };
 
+        fetchPokemon()
+        .then((pokemon) => {
+        setSelectedPokemon(true);
+        setFlavor(pokemon.flavor_text_entries)
+        })
         /* Use the result of the fetchPokemon function */
         /* set the result using selectedPokemon, be sure to support the render below */
     };
@@ -83,12 +92,15 @@ const InteractivePokedex = () => {
             <h2>Interactive Pokedex</h2>
             {
                 selectedPokemon === false
-                ? (
-                    pokemons.map(pokemon => <InterActivePokemon key={pokemon.entry_number} {...pokemon} /* pass the onSelectHandler here a property */ />)
+               ? (
+                    pokemons.map(pokemon => <InterActivePokemon key={pokemon.entry_number} {...{
+                                    pokemon_species: pokemon.pokemon_species,
+                                    onSelectHandler: onSelectHandler,
+                                }} /* pass the onSelectHandler here a property */ />)
                 )
-                : (
-                    <DetailedPokemon {...selectedPokemon} />
-                )
+               : (
+                    <DetailedPokemon {...{ flavor_text_entries: flavor }} />
+               )
             }
         </div>
     )
@@ -105,12 +117,12 @@ const DetailedPokemon = ({ flavor_text_entries }) => {
 
 const InterActivePokemon = ({ pokemon_species, onSelectHandler }) => {
     const onClick = () => {
-        /* trigger the onSelectedHandler function with the pokemon_species */
+       onSelectHandler(pokemon_species) /* trigger the onSelectedHandler function with the pokemon_species */
     };
 
     return (
         <article>
-            {/* Render the property here */}
+            {pokemon_species.name} 
             <button onClick={onClick}>Learn more</button>
         </article>
     )
